@@ -28,8 +28,55 @@ struct Meta: Codable {
 
 // MARK: - Response
 struct Response: Codable {
-    let venues: [Venue]?
-    let confident: Bool?
+    let suggestedFilters: SuggestedFilters?
+    let headerLocation, headerFullLocation: String?
+    let headerLocationGranularity: String?
+    let totalResults: Int?
+    let suggestedBounds: SuggestedBounds?
+    let groups: [Group]?
+}
+
+// MARK: - Group
+struct Group: Codable {
+    let type, name: String?
+    let items: [GroupItem]?
+}
+
+// MARK: - GroupItem
+struct GroupItem: Codable {
+    let reasons: Reasons?
+    let venue: Venue?
+    let referralID: String?
+
+    enum CodingKeys: String, CodingKey {
+        case reasons, venue
+        case referralID = "referralId"
+    }
+}
+
+// MARK: - Reasons
+struct Reasons: Codable {
+    let count: Int?
+    let items: [ReasonsItem]?
+}
+
+// MARK: - ReasonsItem
+struct ReasonsItem: Codable {
+    let summary: Summary?
+    let type: TypeEnum?
+    let reasonName: ReasonName?
+}
+
+enum ReasonName: String, Codable {
+    case globalInteractionReason = "globalInteractionReason"
+}
+
+enum Summary: String, Codable {
+    case thisSpotIsPopular = "This spot is popular"
+}
+
+enum TypeEnum: String, Codable {
+    case general = "general"
 }
 
 // MARK: - Venue
@@ -37,16 +84,9 @@ struct Venue: Codable {
     let id, name: String?
     let location: Location?
     let categories: [Category]?
-    let referralID: String?
-    let hasPerk: Bool?
+    let photos: Photos?
     let delivery: Delivery?
     let venuePage: VenuePage?
-
-    enum CodingKeys: String, CodingKey {
-        case id, name, location, categories
-        case referralID = "referralId"
-        case hasPerk, delivery, venuePage
-    }
 }
 
 // MARK: - Category
@@ -105,7 +145,7 @@ struct Location: Codable {
     let postalCode: String?
     let cc: String?
     let city: String?
-    let state: String?
+    let state: State?
     let country: String?
     let formattedAddress: [String]?
     let neighborhood: String?
@@ -113,11 +153,46 @@ struct Location: Codable {
 
 // MARK: - LabeledLatLng
 struct LabeledLatLng: Codable {
-    let label: String?
+    let label: Label?
     let lat, lng: Double?
+}
+
+enum Label: String, Codable {
+    case display = "display"
+    case entrance = "entrance"
+}
+
+enum State: String, Codable {
+    case ny = "NY"
+}
+
+// MARK: - Photos
+struct Photos: Codable {
+    let count: Int?
 }
 
 // MARK: - VenuePage
 struct VenuePage: Codable {
     let id: String?
+}
+
+// MARK: - SuggestedBounds
+struct SuggestedBounds: Codable {
+    let ne, sw: Ne?
+}
+
+// MARK: - Ne
+struct Ne: Codable {
+    let lat, lng: Double?
+}
+
+// MARK: - SuggestedFilters
+struct SuggestedFilters: Codable {
+    let header: String?
+    let filters: [Filter]?
+}
+
+// MARK: - Filter
+struct Filter: Codable {
+    let name, key: String?
 }

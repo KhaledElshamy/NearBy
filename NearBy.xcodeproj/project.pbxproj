@@ -17,6 +17,9 @@
 		0526B18B270C9BFE00D9CDDA /* NearByUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B18A270C9BFE00D9CDDA /* NearByUITests.swift */; };
 		0577FEB6270CC0CD004CC350 /* VenuesCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEB5270CC0CD004CC350 /* VenuesCellModel.swift */; };
 		0577FEBC270CC456004CC350 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEBB270CC456004CC350 /* LocationService.swift */; };
+		0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */; };
+		0577FF75270CD5A5004CC350 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF74270CD5A5004CC350 /* ApiClient.swift */; };
+		0577FF7A270CD5DC004CC350 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF79270CD5DC004CC350 /* ConfigurationManager.swift */; };
 		6638B34C43267997A8A4FB97 /* Pods_NearByTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D639E7AA2F4ADD9E30CE4E5 /* Pods_NearByTests.framework */; };
 		CD87864C4B735C83299BE483 /* Pods_NearBy_NearByUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D99EE117DFF93462B6E5CBE /* Pods_NearBy_NearByUITests.framework */; };
 		EBB3C095BE1BCC589A7F1A97 /* Pods_NearBy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4429F19DE4AD6CFF92752B1 /* Pods_NearBy.framework */; };
@@ -56,6 +59,9 @@
 		0526B18C270C9BFE00D9CDDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0577FEB5270CC0CD004CC350 /* VenuesCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesCellModel.swift; sourceTree = "<group>"; };
 		0577FEBB270CC456004CC350 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesViewModel.swift; sourceTree = "<group>"; };
+		0577FF74270CD5A5004CC350 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		0577FF79270CD5DC004CC350 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		0D99EE117DFF93462B6E5CBE /* Pods_NearBy_NearByUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBy_NearByUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB82E604115AA23E0D830DE /* Pods-NearByTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearByTests.debug.xcconfig"; path = "Target Support Files/Pods-NearByTests/Pods-NearByTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D639E7AA2F4ADD9E30CE4E5 /* Pods_NearByTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearByTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +172,7 @@
 		0526B19F270C9D3400D9CDDA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0577FF79270CD5DC004CC350 /* ConfigurationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 		0526B1A3270C9D6E00D9CDDA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				0577FEBB270CC456004CC350 /* LocationService.swift */,
+				0577FF74270CD5A5004CC350 /* ApiClient.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -486,9 +495,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0577FF7A270CD5DC004CC350 /* ConfigurationManager.swift in Sources */,
+				0577FF75270CD5A5004CC350 /* ApiClient.swift in Sources */,
 				0526B16D270C9BED00D9CDDA /* ViewController.swift in Sources */,
 				0526B169270C9BED00D9CDDA /* AppDelegate.swift in Sources */,
 				0577FEBC270CC456004CC350 /* LocationService.swift in Sources */,
+				0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */,
 				0526B16B270C9BED00D9CDDA /* SceneDelegate.swift in Sources */,
 				0577FEB6270CC0CD004CC350 /* VenuesCellModel.swift in Sources */,
 			);
