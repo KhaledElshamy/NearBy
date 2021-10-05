@@ -1,0 +1,6 @@
+framework module Pods_NearBy_NearByUITests {
+  umbrella header "Pods-NearBy-NearByUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
