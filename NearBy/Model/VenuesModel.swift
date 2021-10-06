@@ -7,10 +7,7 @@
 
 import Foundation
 
-import Foundation
-
-// MARK: - AddInquiryModel
-struct VenuesCellModel: Codable {
+struct VenuesModel: Codable {
     let meta: Meta?
     let response: Response?
 }
