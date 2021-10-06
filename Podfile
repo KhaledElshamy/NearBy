@@ -11,7 +11,8 @@ target 'NearBy' do
     pod 'RxCocoa' 
     pod 'RxDataSources'
     pod 'RxSwiftExt'
-
+    pod 'JGProgressHUD' 
+    pod 'Kingfisher'
   target 'NearByTests' do
     inherit! :search_paths
     # Pods for testing

@@ -59,21 +59,9 @@ struct Reasons: Codable {
 
 // MARK: - ReasonsItem
 struct ReasonsItem: Codable {
-    let summary: Summary?
-    let type: TypeEnum?
-    let reasonName: ReasonName?
-}
-
-enum ReasonName: String, Codable {
-    case globalInteractionReason = "globalInteractionReason"
-}
-
-enum Summary: String, Codable {
-    case thisSpotIsPopular = "This spot is popular"
-}
-
-enum TypeEnum: String, Codable {
-    case general = "general"
+    let summary: String?
+    let type: String?
+    let reasonName: String?
 }
 
 // MARK: - Venue
@@ -96,7 +84,7 @@ struct Category: Codable {
 // MARK: - CategoryIcon
 struct CategoryIcon: Codable {
     let iconPrefix: String?
-    let suffix: Suffix?
+    let suffix: String?
 
     enum CodingKeys: String, CodingKey {
         case iconPrefix = "prefix"
@@ -104,9 +92,6 @@ struct CategoryIcon: Codable {
     }
 }
 
-enum Suffix: String, Codable {
-    case png = ".png"
-}
 
 // MARK: - Delivery
 struct Delivery: Codable {
@@ -142,7 +127,7 @@ struct Location: Codable {
     let postalCode: String?
     let cc: String?
     let city: String?
-    let state: State?
+    let state: String?
     let country: String?
     let formattedAddress: [String]?
     let neighborhood: String?
@@ -150,18 +135,10 @@ struct Location: Codable {
 
 // MARK: - LabeledLatLng
 struct LabeledLatLng: Codable {
-    let label: Label?
+    let label: String?
     let lat, lng: Double?
 }
 
-enum Label: String, Codable {
-    case display = "display"
-    case entrance = "entrance"
-}
-
-enum State: String, Codable {
-    case ny = "NY"
-}
 
 // MARK: - Photos
 struct Photos: Codable {

@@ -12,6 +12,7 @@ class PlacesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var placeImage: UIImageView!
     
     var viewModel: PlacesCellModel? {
         didSet {

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window?.makeKeyAndVisible()
-        window?.rootViewController = NearByPlacesViewController()
+        window?.rootViewController = UINavigationController(rootViewController: NearByPlacesViewController())
         return true
     }
 

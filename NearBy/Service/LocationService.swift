@@ -14,9 +14,11 @@ final class LocationService: NSObject {
     
     static let shared: LocationService = LocationService()
     private let manager = CLLocationManager()
+    private let userDefault = UserDefaults()
     
     private let currentLocationRelay: BehaviorRelay<(lat:Double, long:Double)?> = BehaviorRelay(value: nil)
     lazy var currentLocation: Observable<(lat:Double, long:Double)?> = self.currentLocationRelay.asObservable().share(replay: 1, scope: .forever)
+    private var lastLocation = CLLocation(latitude: 0.0, longitude: 0.0)
     
     private override init(){
         super.init()
@@ -24,12 +26,15 @@ final class LocationService: NSObject {
     }
     
     private func setupLocationManager(){
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        
         manager.requestAlwaysAuthorization()
+        manager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
-            manager.stopUpdatingLocation()
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            manager.startUpdatingLocation()
+            manager.allowsBackgroundLocationUpdates = true
         }
     }
 }
@@ -45,8 +50,16 @@ extension LocationService: CLLocationManagerDelegate {
                 lat: location.coordinate.latitude,
                 long: location.coordinate.longitude
             )
-            currentLocationRelay.accept(currentLocation)
-            manager.stopUpdatingLocation()
+            
+            if lastLocation.coordinate.latitude == 0.0 && lastLocation.coordinate.longitude == 0.0 {
+                lastLocation = location
+                currentLocationRelay.accept(currentLocation)
+            }else {
+                let distanceInMeters = location.distance(from: lastLocation)
+                if distanceInMeters > 500 && !userDefault.bool(forKey: "singleUpdate") {
+                    currentLocationRelay.accept(currentLocation)
+                }
+            }
         }
     }
 }

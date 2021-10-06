@@ -15,6 +15,9 @@
 		0526B175270C9BFD00D9CDDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526B173270C9BFD00D9CDDA /* LaunchScreen.storyboard */; };
 		0526B180270C9BFE00D9CDDA /* NearByTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B17F270C9BFE00D9CDDA /* NearByTests.swift */; };
 		0526B18B270C9BFE00D9CDDA /* NearByUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B18A270C9BFE00D9CDDA /* NearByUITests.swift */; };
+		05770038270DDDC2004CC350 /* PhotoServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05770037270DDDC2004CC350 /* PhotoServiceModel.swift */; };
+		0577003D270DDDE6004CC350 /* PhotoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577003C270DDDE6004CC350 /* PhotoCellModel.swift */; };
+		05770058270DE8C8004CC350 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05770057270DE8C8004CC350 /* UIImageView.swift */; };
 		0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEB5270CC0CD004CC350 /* VenuesModel.swift */; };
 		0577FEBC270CC456004CC350 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEBB270CC456004CC350 /* LocationService.swift */; };
 		0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */; };
@@ -64,6 +67,9 @@
 		0526B186270C9BFE00D9CDDA /* NearByUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearByUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526B18A270C9BFE00D9CDDA /* NearByUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUITests.swift; sourceTree = "<group>"; };
 		0526B18C270C9BFE00D9CDDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05770037270DDDC2004CC350 /* PhotoServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServiceModel.swift; sourceTree = "<group>"; };
+		0577003C270DDDE6004CC350 /* PhotoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellModel.swift; sourceTree = "<group>"; };
+		05770057270DE8C8004CC350 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		0577FEB5270CC0CD004CC350 /* VenuesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesModel.swift; sourceTree = "<group>"; };
 		0577FEBB270CC456004CC350 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			children = (
 				0577FFB0270D1A59004CC350 /* UITableView.swift */,
 				0577FFB5270D1BD1004CC350 /* UIView.swift */,
+				05770057270DE8C8004CC350 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -198,7 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				0577FEB5270CC0CD004CC350 /* VenuesModel.swift */,
+				05770037270DDDC2004CC350 /* PhotoServiceModel.swift */,
 				0577FF7E270CED35004CC350 /* PlacesCellModel.swift */,
+				0577003C270DDDE6004CC350 /* PhotoCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -535,9 +544,12 @@
 				0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */,
 				0577FFBC270D1C2B004CC350 /* PlacesTableViewCell.swift in Sources */,
 				0577FFB1270D1A59004CC350 /* UITableView.swift in Sources */,
+				0577003D270DDDE6004CC350 /* PhotoCellModel.swift in Sources */,
 				0526B16B270C9BED00D9CDDA /* SceneDelegate.swift in Sources */,
 				0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */,
 				0577FFC3270D1DD8004CC350 /* EmptyStatusView.swift in Sources */,
+				05770038270DDDC2004CC350 /* PhotoServiceModel.swift in Sources */,
+				05770058270DE8C8004CC350 /* UIImageView.swift in Sources */,
 				0577FF7F270CED35004CC350 /* PlacesCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

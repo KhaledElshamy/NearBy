@@ -21,6 +21,7 @@
                         <rect key="frame" x="16" y="8" width="68" height="65"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="68" id="6xp-sN-lsq"/>
+                            <constraint firstAttribute="height" constant="65" id="GnS-2y-uRP"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljl-mc-ukV">
@@ -53,6 +54,7 @@
             <connections>
                 <outlet property="address" destination="xGx-9j-Q92" id="Oot-HX-eOq"/>
                 <outlet property="name" destination="Ljl-mc-ukV" id="HOd-23-luL"/>
+                <outlet property="placeImage" destination="qfb-VB-8cj" id="jXG-pj-k15"/>
             </connections>
             <point key="canvasLocation" x="95.652173913043484" y="134.26339285714286"/>
         </tableViewCell>

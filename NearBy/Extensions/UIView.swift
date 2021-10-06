@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NibLoadable {
+    static var nibName : String { get }
+}
+
 extension UIView: NibLoadable {
     class func fromNib<V: UIView>() -> V {
         guard let view = Bundle.main.loadNibNamed(V.nibName, owner: nil, options: nil)?[0] as? V else {
@@ -14,10 +18,6 @@ extension UIView: NibLoadable {
         }
         return view
     }
-}
-
-protocol NibLoadable {
-    static var nibName : String { get }
 }
 
 extension NibLoadable where Self: UIView {

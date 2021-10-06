@@ -28,6 +28,8 @@ class EmptyStatusView : UIView {
     lazy var labelEmpty : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
