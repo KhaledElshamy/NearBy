@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 enum PlacesTableViewCellType {
+    
     case normal(cellViewModel: PlacesCellModel)
     case error(message: String)
     case empty
@@ -45,17 +46,18 @@ class NearByViewModel {
     
     private let appServerClient: ApiClient
     
-    init(apiClient: ApiClient = ApiClient()) {
+    init(apiClient: ApiClient) {
         self.appServerClient = apiClient
     }
     
     // MARK: - get current location
-    func getCurrentLocation(failed: @escaping (String)->()) {
+    func getCurrentLocation(failed: @escaping (String)->() = { _ in}) {
         
         locationService
             .currentLocation
             .subscribe(
             onNext: { [weak self] location in
+                
                 if let location = location {
                     self?.getNearbyPlaces(location: location)
                 }
@@ -69,14 +71,14 @@ class NearByViewModel {
     
     
     // MARK: - get nearby places according to current location
-    private func getNearbyPlaces(location: (lat:Double, long:Double)?) {
+    func getNearbyPlaces(location: (lat:Double, long:Double)?) {
         loadInProgress.accept(true)
         
         appServerClient
             .getNearbyPlaces(lat: location?.lat ?? 0.0,
                              long: location?.long ?? 0.0,
                              radius: 1000,
-                             currentDate: "20211006")
+                             currentDate: "20211007")
             .subscribe (
             onNext: { [weak self] model in
                 
@@ -89,10 +91,6 @@ class NearByViewModel {
                 self?.cells.accept( model.response?.groups?[0].items?.compactMap {
                     .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
                 } ?? [] )
-                
-                model.response?.groups?[0].items?.forEach { [weak self] in 
-                    self?.getImage(of: $0.venue?.id ?? "", currentDate: "20211006")
-                }
             },
             onError: { [weak self] error in
                 self?.loadInProgress.accept(false)
@@ -110,12 +108,17 @@ class NearByViewModel {
             .subscribe(
                 onNext: { [weak self] model in
                     guard model.response?.photos?.items?.count ?? 0 > 0 else {
-                        self?.cells.accept([.empty])
+                        self?.photoCell.accept(PhotoCellModel(url: ""))
                         return
                     }
                     
                     let item = model.response?.photos?.items?[0]
-                    self?.photoCell.accept(PhotoCellModel(url: item?.itemPrefix ?? "" + "\(String(describing: item?.width))*\(String(describing: item?.height))" + (item?.suffix ?? "")))
+                    let prefix = item?.itemPrefix ?? ""
+                    let size = "\(item?.width ?? 0)x\(item?.height ?? 0)"
+                    let suffix = item?.suffix ?? ""
+                    let imageUrl = prefix + size + suffix
+                    
+                    self?.photoCell.accept(PhotoCellModel(url:  imageUrl))
                 }, onError: { [weak self] error in 
                     self?.photoCell.accept(PhotoCellModel(url: ""))
                 }

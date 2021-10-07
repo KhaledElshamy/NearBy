@@ -13,11 +13,14 @@
 		0526B170270C9BED00D9CDDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526B16E270C9BED00D9CDDA /* Main.storyboard */; };
 		0526B172270C9BFD00D9CDDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0526B171270C9BFD00D9CDDA /* Assets.xcassets */; };
 		0526B175270C9BFD00D9CDDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0526B173270C9BFD00D9CDDA /* LaunchScreen.storyboard */; };
-		0526B180270C9BFE00D9CDDA /* NearByTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B17F270C9BFE00D9CDDA /* NearByTests.swift */; };
 		0526B18B270C9BFE00D9CDDA /* NearByUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B18A270C9BFE00D9CDDA /* NearByUITests.swift */; };
 		05770038270DDDC2004CC350 /* PhotoServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05770037270DDDC2004CC350 /* PhotoServiceModel.swift */; };
 		0577003D270DDDE6004CC350 /* PhotoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577003C270DDDE6004CC350 /* PhotoCellModel.swift */; };
 		05770058270DE8C8004CC350 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05770057270DE8C8004CC350 /* UIImageView.swift */; };
+		0577009C270F25EC004CC350 /* NearByPlacesViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577009B270F25EC004CC350 /* NearByPlacesViewControllerTest.swift */; };
+		057700B0270F57CB004CC350 /* NearByViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700AF270F57CB004CC350 /* NearByViewModelTest.swift */; };
+		057700B6270F727F004CC350 /* ResultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700B5270F727F004CC350 /* ResultHelper.swift */; };
+		057700CF270F9A3A004CC350 /* VenueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700CE270F9A3A004CC350 /* VenueExtension.swift */; };
 		0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEB5270CC0CD004CC350 /* VenuesModel.swift */; };
 		0577FEBC270CC456004CC350 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEBB270CC456004CC350 /* LocationService.swift */; };
 		0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */; };
@@ -62,7 +65,6 @@
 		0526B174270C9BFD00D9CDDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0526B176270C9BFD00D9CDDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0526B17B270C9BFE00D9CDDA /* NearByTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearByTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0526B17F270C9BFE00D9CDDA /* NearByTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByTests.swift; sourceTree = "<group>"; };
 		0526B181270C9BFE00D9CDDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0526B186270C9BFE00D9CDDA /* NearByUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearByUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0526B18A270C9BFE00D9CDDA /* NearByUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUITests.swift; sourceTree = "<group>"; };
@@ -70,6 +72,10 @@
 		05770037270DDDC2004CC350 /* PhotoServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServiceModel.swift; sourceTree = "<group>"; };
 		0577003C270DDDE6004CC350 /* PhotoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellModel.swift; sourceTree = "<group>"; };
 		05770057270DE8C8004CC350 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		0577009B270F25EC004CC350 /* NearByPlacesViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByPlacesViewControllerTest.swift; sourceTree = "<group>"; };
+		057700AF270F57CB004CC350 /* NearByViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByViewModelTest.swift; sourceTree = "<group>"; };
+		057700B5270F727F004CC350 /* ResultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHelper.swift; sourceTree = "<group>"; };
+		057700CE270F9A3A004CC350 /* VenueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExtension.swift; sourceTree = "<group>"; };
 		0577FEB5270CC0CD004CC350 /* VenuesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesModel.swift; sourceTree = "<group>"; };
 		0577FEBB270CC456004CC350 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesViewModel.swift; sourceTree = "<group>"; };
@@ -168,7 +174,9 @@
 		0526B17E270C9BFE00D9CDDA /* NearByTests */ = {
 			isa = PBXGroup;
 			children = (
-				0526B17F270C9BFE00D9CDDA /* NearByTests.swift */,
+				057700B4270F7263004CC350 /* Helpers */,
+				057700A3270F5790004CC350 /* ViewModel */,
+				0577007A270F210E004CC350 /* UI */,
 				0526B181270C9BFE00D9CDDA /* Info.plist */,
 			);
 			path = NearByTests;
@@ -189,6 +197,7 @@
 				0577FFB0270D1A59004CC350 /* UITableView.swift */,
 				0577FFB5270D1BD1004CC350 /* UIView.swift */,
 				05770057270DE8C8004CC350 /* UIImageView.swift */,
+				057700CE270F9A3A004CC350 /* VenueExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,6 +244,38 @@
 				0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0577007A270F210E004CC350 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0577007C270F211E004CC350 /* ViewController */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0577007C270F211E004CC350 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0577009B270F25EC004CC350 /* NearByPlacesViewControllerTest.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		057700A3270F5790004CC350 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				057700AF270F57CB004CC350 /* NearByViewModelTest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		057700B4270F7263004CC350 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				057700B5270F727F004CC350 /* ResultHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		0577FEBA270CC434004CC350 /* Service */ = {
@@ -545,6 +586,7 @@
 				0577FFBC270D1C2B004CC350 /* PlacesTableViewCell.swift in Sources */,
 				0577FFB1270D1A59004CC350 /* UITableView.swift in Sources */,
 				0577003D270DDDE6004CC350 /* PhotoCellModel.swift in Sources */,
+				057700CF270F9A3A004CC350 /* VenueExtension.swift in Sources */,
 				0526B16B270C9BED00D9CDDA /* SceneDelegate.swift in Sources */,
 				0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */,
 				0577FFC3270D1DD8004CC350 /* EmptyStatusView.swift in Sources */,
@@ -558,7 +600,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0526B180270C9BFE00D9CDDA /* NearByTests.swift in Sources */,
+				0577009C270F25EC004CC350 /* NearByPlacesViewControllerTest.swift in Sources */,
+				057700B0270F57CB004CC350 /* NearByViewModelTest.swift in Sources */,
+				057700B6270F727F004CC350 /* ResultHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
