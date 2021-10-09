@@ -124,7 +124,6 @@ class NearByPlacesViewController: UIViewController {
     }
     
     // MARK: - bind tableViewCell with photo
-    
     private func setPhotosToTableViewCells(){
         viewModel
             .photoUrlOfCell
