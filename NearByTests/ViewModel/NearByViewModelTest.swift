@@ -18,7 +18,7 @@ class NearByViewModelTest: XCTestCase {
         apiClientService.getPlacesResult = .success(payload: VenuesModel(meta: nil, response: nil))
         
         let sut = makeSut(apiClient: apiClientService)
-        sut.getNearbyPlaces(location: (lat:40.7,long:-74))
+        sut.getNearbyPlaces(offset: 0, limit: 10, location: (lat:40.7,long:-74))
         
         sut.placesCells
             .subscribe(
@@ -41,7 +41,7 @@ class NearByViewModelTest: XCTestCase {
         apiClientService.getPlacesResult = .success(payload: model)
         
         let sut = makeSut(apiClient: apiClientService)
-        sut.getNearbyPlaces(location: (lat:40.7,long:-74))
+        sut.getNearbyPlaces(offset: 0, limit: 10, location: (lat:40.7,long:-74))
         
         sut.placesCells
             .subscribe(
@@ -63,7 +63,7 @@ class NearByViewModelTest: XCTestCase {
         apiClientService.getPlacesResult = .failure(GetFailureReason.notFound)
         
         let sut = makeSut(apiClient: apiClientService)
-        sut.getNearbyPlaces(location: (lat:40.7,long:-74))
+        sut.getNearbyPlaces(offset: 0, limit: 10, location: (lat:40.7,long:-74))
         
         sut.placesCells
             .subscribe(
@@ -135,7 +135,12 @@ private final class MockAppServerClient: ApiClient {
     var getPlacesResult: Result<VenuesModel,GetFailureReason>?
     var getPhotoResult: Result<PhotoServiceModel,GetFailureReason>?
     
-    override func getNearbyPlaces(lat: Double, long: Double, radius: Double, currentDate: String) -> Observable<VenuesModel> {
+    override func getNearbyPlaces(lat: Double,
+                                  long: Double,
+                                  radius: Double,
+                                  currentDate: String,
+                                  offset:Int,
+                                  limit:Int) -> Observable<VenuesModel> {
         return Observable.create { [weak self] observer in
             switch self?.getPlacesResult {
             case .success(let data):
