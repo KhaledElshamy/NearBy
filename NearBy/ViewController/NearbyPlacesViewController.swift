@@ -36,7 +36,9 @@ class NearByPlacesViewController: UIViewController {
         
         setupNavigation()
         setupTableView()
+        bindLoading()
         bindTableData()
+        setPhotosToTableViewCells()
         
         // fetch current location
         getCurrentLocation()
@@ -70,14 +72,23 @@ class NearByPlacesViewController: UIViewController {
         }
     }
     
-    private func bindTableData(){
-        
+    // MARK: - bind Loading
+    private func bindLoading(){
         // bind loading
         viewModel
             .onShowLoadingHud
             .map { [weak self] in self?.handleLoading(visible: $0) }
             .subscribe()
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - binding tableview with names and addresses
+    let startLoadingOffset: CGFloat = 20.0
+    func isNearTheBottomEdge(contentOffset: CGPoint, _ tableView: UITableView) -> Bool {
+            return contentOffset.y + tableView.frame.size.height + startLoadingOffset > tableView.contentSize.height
+    }
+
+    private func bindTableData(){
         
         // bind items to tableView
         viewModel
@@ -87,8 +98,6 @@ class NearByPlacesViewController: UIViewController {
             let indexPath = IndexPath(item: index, section: 0)
             switch element {
             case .normal(let cellViewModel):
-                self?.bindPhoto(of: tableView, at: indexPath)
-                self?.viewModel.getImage(of: cellViewModel.id ?? "", currentDate: "20211007")
                 let cell:PlacesTableViewCell = tableView.dequeueReusableCell(for: indexPath)
                 cell.viewModel = cellViewModel
                 return cell 
@@ -101,28 +110,35 @@ class NearByPlacesViewController: UIViewController {
             }
         }
             .disposed(by: disposeBag)
+        
+        // pagination
+        tableView.rx
+            .willDisplayCell
+            .subscribe(onNext: { [unowned self] cell, indexPath in
+                //Do your will display logic
+                if (indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1) {
+                    viewModel.fetchMoreData()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func bindPhoto(of tableView:UITableView, at indexPath:IndexPath){
+    // MARK: - bind tableViewCell with photo
+    
+    private func setPhotosToTableViewCells(){
         viewModel
             .photoUrlOfCell
             .subscribe(
                 onNext: { [weak self] model in
-                    self?.showImage(of: tableView, at: indexPath, with: model.url ?? "")
-                }, onError: { [weak self] error in
-                    self?.showImage(of: tableView, at: indexPath, with: "")
+                    self?.showImage(at: model.index ?? 0, with: model.url ?? "")
                 }
             )
             .disposed(by: disposeBag)
     }
     
-    private func showImage(of tableView:UITableView, at indexPath:IndexPath, with url:String){
-        if let cell = tableView.cellForRow(at: indexPath) as? PlacesTableViewCell {
-            if url != "" {
-                cell.placeImage.loadImage(url: url)
-            }else {
-                cell.placeImage.image = #imageLiteral(resourceName: "placeholder")
-            }
+    private func showImage(at index:Int , with url:String){
+        if let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? PlacesTableViewCell {
+            cell.placeImage.loadImage(url: url, placeHolder: #imageLiteral(resourceName: "placeholder"))
         }
     }
     

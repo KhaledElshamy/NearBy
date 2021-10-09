@@ -4,7 +4,6 @@
 //
 //  Created by Khaled Elshamy on 05/10/2021.
 //
-
 import RxSwift
 import RxCocoa
 
@@ -12,12 +11,6 @@ enum PlacesTableViewCellType {
     
     case normal(cellViewModel: PlacesCellModel)
     case error(message: String)
-    case empty
-}
-
-enum PhotosTableViewCellType {
-    case normal(cellPhotoViewModel: PhotoCellModel)
-    case error(url:String)
     case empty
 }
 
@@ -36,15 +29,20 @@ class NearByViewModel {
     var photoUrlOfCell: Observable<PhotoCellModel> {
         return photoCell.asObservable()
     }
- 
-    private let locationService = LocationService.shared
+    
     
     private let loadInProgress = BehaviorRelay(value: false)
     private let cells = BehaviorRelay<[PlacesTableViewCellType]>(value: [])
     private let photoCell = BehaviorRelay<PhotoCellModel>(value: PhotoCellModel(url: ""))
-    private let disposeBag = DisposeBag()
     
+    private let locationService = LocationService.shared
+    private let disposeBag = DisposeBag()
     private let appServerClient: ApiClient
+    
+    private var offset:Int = 0
+    private var limit:Int = 10
+    private var maxPageValue: Int = 50
+    private var lastImageCellIndex: Int = 0
     
     init(apiClient: ApiClient) {
         self.appServerClient = apiClient
@@ -56,10 +54,12 @@ class NearByViewModel {
         locationService
             .currentLocation
             .subscribe(
-            onNext: { [weak self] location in
+            onNext: { [unowned self] location in
                 
                 if let location = location {
-                    self?.getNearbyPlaces(location: location)
+                    offset = 0
+                    lastImageCellIndex = 0
+                    getNearbyPlaces(offset: offset, limit: limit, location: location)
                 }
             },
             onError: { error in
@@ -71,15 +71,25 @@ class NearByViewModel {
     
     
     // MARK: - get nearby places according to current location
-    func getNearbyPlaces(location: (lat:Double, long:Double)?) {
+    func getNearbyPlaces(offset:Int,limit:Int,location: (lat:Double, long:Double)?) {
+        
+        if (offset > maxPageValue) {
+            loadInProgress.accept(false)
+            return
+        }
+        
         loadInProgress.accept(true)
         
         appServerClient
             .getNearbyPlaces(lat: location?.lat ?? 0.0,
                              long: location?.long ?? 0.0,
                              radius: 1000,
-                             currentDate: "20211007")
+                             currentDate: DateManager.getCurrentDate(),
+                             offset: offset,
+                             limit: limit
+            )
             .subscribe (
+                
             onNext: { [weak self] model in
                 
                 self?.loadInProgress.accept(false)
@@ -87,10 +97,25 @@ class NearByViewModel {
                     self?.cells.accept([.empty])
                     return
                 }
-
-                self?.cells.accept( model.response?.groups?[0].items?.compactMap {
-                    .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
-                } ?? [] )
+                
+                if (offset == 0){
+                    self?.cells.accept( model.response?.groups?[0].items?.compactMap {
+                        .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
+                    } ?? [] )
+                }else {
+                    let oldData = self?.cells.value ?? []
+                    self?.cells.accept(oldData + (model.response?.groups?[0].items?.compactMap {
+                        .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
+                    } ?? [] ))
+                }
+                
+                self?.offset +=  (self?.cells.value.count ?? 0)
+                
+                let items = model.response?.groups?[0].items ?? []
+                for item in items {
+                    self?.getImage(of: item.venue?.id ?? "", currentDate: DateManager.getCurrentDate(), index: self?.lastImageCellIndex ?? 0)
+                    self?.lastImageCellIndex += 1
+                }
             },
             onError: { [weak self] error in
                 self?.loadInProgress.accept(false)
@@ -100,8 +125,17 @@ class NearByViewModel {
         .disposed(by: disposeBag)
     }
     
+    
+    // MARK: - get more places
+    func fetchMoreData(){
+        getNearbyPlaces(offset: offset,
+                        limit: limit,
+                        location: (locationService.lastLocation.coordinate.latitude,
+                                   locationService.lastLocation.coordinate.longitude))
+    }
+    
     // MARK: - get image of each place
-    func getImage(of id:String, currentDate:String){
+    func getImage(of id:String, currentDate:String, index:Int){
         
         appServerClient
             .getPlaceImage(placeId: id, currentDate: currentDate)
@@ -118,11 +152,12 @@ class NearByViewModel {
                     let suffix = item?.suffix ?? ""
                     let imageUrl = prefix + size + suffix
                     
-                    self?.photoCell.accept(PhotoCellModel(url:  imageUrl))
-                }, onError: { [weak self] error in 
-                    self?.photoCell.accept(PhotoCellModel(url: ""))
+                    self?.photoCell.accept(PhotoCellModel(url:  imageUrl,index: index))
+                }, onError: { [weak self] error in
+                    self?.photoCell.accept(PhotoCellModel(url: "",index: index))
                 }
             )
             .disposed(by: disposeBag)
     }
 }
+

@@ -12,7 +12,7 @@ class PlacesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var placeImage: UIImageView!
+    @IBOutlet weak var placeImage: CustomImageView!
     
     var viewModel: PlacesCellModel? {
         didSet {
@@ -24,6 +24,7 @@ class PlacesTableViewCell: UITableViewCell {
         if let viewModel = viewModel {
             name?.text = viewModel.name
             address?.text = viewModel.address
+//            placeImage.loadImageUsingUrlString(urlString: viewModel.imageUrl ?? "")
         }
     }
     

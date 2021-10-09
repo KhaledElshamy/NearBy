@@ -9,4 +9,5 @@ import Foundation
 
 struct PhotoCellModel {
     var url:String?
+    var index:Int?
 }

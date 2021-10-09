@@ -60,7 +60,7 @@ class NearByViewModelTest: XCTestCase {
     
     func test_errorPlacesCell() {
         
-        apiClientService.getPlacesResult = .failure(GetPlacesFailureReason.notFound)
+        apiClientService.getPlacesResult = .failure(GetFailureReason.notFound)
         
         let sut = makeSut(apiClient: apiClientService)
         sut.getNearbyPlaces(location: (lat:40.7,long:-74))
@@ -83,7 +83,7 @@ class NearByViewModelTest: XCTestCase {
     func test_emptyPhotoCell(){
         apiClientService.getPhotoResult = .success(payload: PhotoServiceModel(meta: nil, response: nil))
         let sut = makeSut(apiClient: apiClientService)
-        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007")
+        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007",index: 0)
         
         sut.photoUrlOfCell
             .subscribe(
@@ -103,7 +103,7 @@ class NearByViewModelTest: XCTestCase {
         apiClientService.getPhotoResult = .success(payload: PhotoServiceModel(meta: nil, response: PhotoResponse(photos: PlacePhotos(count: nil, items: [Item(id: nil, createdAt: nil, source: nil, itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500, checkin: nil, visibility: nil)], dupesRemoved: nil))))
         
         let sut = makeSut(apiClient: apiClientService)
-        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007")
+        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007",index: 0)
         
         sut.photoUrlOfCell
             .subscribe(
@@ -121,18 +121,19 @@ class NearByViewModelTest: XCTestCase {
     // MARK:- helpers
     private let disposeBag = DisposeBag()
     private let apiClientService = MockAppServerClient()
-    
-    private func makeSut(apiClient: MockAppServerClient ) -> NearByViewModel {
+    private func makeSut(apiClient: MockAppServerClient = MockAppServerClient()) -> NearByViewModel {
         let sut = NearByViewModel(apiClient: apiClient)
         return sut
     }
 }
 
 
+// MARK: - Mock App Service
+
 private final class MockAppServerClient: ApiClient {
     
-    var getPlacesResult: Result<VenuesModel,GetPlacesFailureReason>?
-    var getPhotoResult: Result<PhotoServiceModel,GetPlacesFailureReason>?
+    var getPlacesResult: Result<VenuesModel,GetFailureReason>?
+    var getPhotoResult: Result<PhotoServiceModel,GetFailureReason>?
     
     override func getNearbyPlaces(lat: Double, long: Double, radius: Double, currentDate: String) -> Observable<VenuesModel> {
         return Observable.create { [weak self] observer in
@@ -142,7 +143,7 @@ private final class MockAppServerClient: ApiClient {
             case .failure(let error):
                 observer.onError(error!)
             case .none:
-                observer.onError(GetPlacesFailureReason.notFound)
+                observer.onError(GetFailureReason.notFound)
             }
             return Disposables.create()
         }
@@ -156,7 +157,7 @@ private final class MockAppServerClient: ApiClient {
             case .failure(let error):
                 observer.onError(error!)
             case .none:
-                observer.onError(GetPlacesFailureReason.notFound)
+                observer.onError(GetFailureReason.notFound)
             }
             return Disposables.create()
         }

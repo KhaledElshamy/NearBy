@@ -12,4 +12,5 @@ struct PlacesCellModel {
     let name:String?
     let id:String?
     let address:String?
+//    let imageUrl:String?
 }

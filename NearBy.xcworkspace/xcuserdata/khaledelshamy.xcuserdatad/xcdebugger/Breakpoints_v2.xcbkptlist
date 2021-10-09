@@ -14,89 +14,89 @@
             filePath = "NearBy/Service/ApiClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:offset:limit:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C3400FB7-0279-4B87-915A-3E5E112AA119"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NearBy/Service/ApiClient.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3EE4A82D-713A-4485-A437-79F53E27BFC6"
+            uuid = "E5572436-5707-4268-A452-064C8276865F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NearBy/Service/ApiClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:offset:limit:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CA39F0B0-4737-4EAB-8FDD-C2D275946C5A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NearBy/Service/ApiClient.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "getNearbyPlaces(lat:long:radius:currentDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8DDBE4C0-7D67-415C-9693-68B081764010"
+            uuid = "9F29F86E-8F2F-4153-BF44-5F61C4F113F7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NearBy/ViewModel/NearbyPlacesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "getImage(of:currentDate:)"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "getNearbyPlaces(offset:limit:location:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9F29F86E-8F2F-4153-BF44-5F61C4F113F7 - 50d1737ea860ddb5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NearBy.VenuesModel) -&gt; () in NearBy.NearByViewModel.getNearbyPlaces(offset: Swift.Int, limit: Swift.Int, location: Swift.Optional&lt;(lat: Swift.Double, long: Swift.Double)&gt;) -&gt; ()"
+                  moduleName = "NearBy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khaledelshamy/Desktop/NearBy/NearBy/ViewModel/NearbyPlacesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "980">
+               </Location>
+               <Location
+                  uuid = "9F29F86E-8F2F-4153-BF44-5F61C4F113F7 - bbe5e81bf376fef3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NearBy.GroupItem) -&gt; Swift.Optional&lt;NearBy.PlacesTableViewCellType&gt; in closure #1 (NearBy.VenuesModel) -&gt; () in NearBy.NearByViewModel.getNearbyPlaces(offset: Swift.Int, limit: Swift.Int, location: Swift.Optional&lt;(lat: Swift.Double, long: Swift.Double)&gt;) -&gt; ()"
+                  moduleName = "NearBy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khaledelshamy/Desktop/NearBy/NearBy/ViewModel/NearbyPlacesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "61">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ACBC19CD-832D-4A36-A37B-5FAEA8511CEB"
+            uuid = "25923532-A55B-47A4-B92D-12ED14A13A01"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NearBy/ViewModel/NearbyPlacesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "getImage(of:currentDate:)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "getNearbyPlaces(offset:limit:location:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

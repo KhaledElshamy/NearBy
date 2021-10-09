@@ -8,7 +8,7 @@
 import Alamofire
 import RxSwift
 
-enum GetPlacesFailureReason: Int, Error {
+enum GetFailureReason: Int, Error {
     case notFound = 404
 }
 
@@ -18,11 +18,13 @@ class ApiClient {
     func getNearbyPlaces(lat:Double,
                          long:Double,
                          radius:Double,
-                         currentDate:String) -> Observable<VenuesModel>
+                         currentDate:String,
+                         offset:Int,
+                         limit:Int) -> Observable<VenuesModel>
     {
         
         return Observable.create { (observer) -> Disposable in
-            let url = ConfigurationManager.BaseURL + "/venues/explore?radius=\(radius)&ll=\(lat),\(long)&client_id=I5IVAR3XPPXRPTODR3NQYGNEE0IRKC2M3TRXQTGTA2ZEWMWW&client_secret=FU4E2ICP10ELXNNKCV4UHG0JFWJBY125DEVQ3QKJOGDWMT0W&v=\(currentDate)"
+            let url = ConfigurationManager.BaseURL + "/venues/explore?radius=\(radius)&ll=\(lat),\(long)&client_id=14FXPVUYCDSL3RYBDELIMOVLEUJADWUJIIKWSAUOTSBMM1MZ&client_secret=QWYFQEFRJDO3BGVCUJ4URZQKGOL4ZRBXSGYUJG4ZPH0HRBSD&offset=\(offset)&limit=\(limit)&v=\(currentDate)"
             
             Alamofire.request(url,method: .get)
                 .validate()
@@ -40,6 +42,11 @@ class ApiClient {
                             observer.onError(error)
                         }
                     case .failure(let error):
+                        if let statusCode = response.response?.statusCode,
+                            let reason = GetFailureReason(rawValue: statusCode)
+                        {
+                            observer.onError(reason)
+                        }
                         observer.onError(error)
                         return
                     }
@@ -55,7 +62,7 @@ class ApiClient {
     {
         
         return Observable.create { (observer) -> Disposable in
-            let url = ConfigurationManager.BaseURL + "/venues/\(placeId)/photos?client_id=I5IVAR3XPPXRPTODR3NQYGNEE0IRKC2M3TRXQTGTA2ZEWMWW&client_secret=FU4E2ICP10ELXNNKCV4UHG0JFWJBY125DEVQ3QKJOGDWMT0W&v=\(currentDate)"
+            let url = ConfigurationManager.BaseURL + "/venues/\(placeId)/photos?client_id=14FXPVUYCDSL3RYBDELIMOVLEUJADWUJIIKWSAUOTSBMM1MZ&client_secret=QWYFQEFRJDO3BGVCUJ4URZQKGOL4ZRBXSGYUJG4ZPH0HRBSD&v=\(currentDate)"
             
             Alamofire.request(url,method: .get)
                 .validate()
@@ -73,6 +80,11 @@ class ApiClient {
                             observer.onError(error)
                         }
                     case .failure(let error):
+                        if let statusCode = response.response?.statusCode,
+                            let reason = GetFailureReason(rawValue: statusCode)
+                        {
+                            observer.onError(reason)
+                        }
                         observer.onError(error)
                         return
                     }

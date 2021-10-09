@@ -18,7 +18,7 @@ final class LocationService: NSObject {
     
     private let currentLocationRelay: BehaviorRelay<(lat:Double, long:Double)?> = BehaviorRelay(value: nil)
     lazy var currentLocation: Observable<(lat:Double, long:Double)?> = self.currentLocationRelay.asObservable().share(replay: 1, scope: .forever)
-    private var lastLocation = CLLocation(latitude: 0.0, longitude: 0.0)
+    var lastLocation = CLLocation(latitude: 0.0, longitude: 0.0)
     
     private override init(){
         super.init()

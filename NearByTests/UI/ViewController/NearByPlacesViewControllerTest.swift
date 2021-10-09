@@ -25,6 +25,7 @@ class NearByPlacesViewControllerTest: XCTestCase {
         XCTAssertEqual(makeSut(rendersViewDidLoad:true).navigationItem.rightBarButtonItem?.title, userDefault.bool(forKey: "singleUpdate") ? "Single Update" : "Realtime")
     }
     
+    
     // MARK: - Helpers
     private let userDefault = UserDefaults()
     private let disposeBag = DisposeBag()
