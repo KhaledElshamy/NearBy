@@ -8,7 +8,6 @@ import RxSwift
 import RxCocoa
 
 enum PlacesTableViewCellType {
-    
     case normal(cellViewModel: PlacesCellModel)
     case error(message: String)
     case empty
@@ -29,8 +28,7 @@ class NearByViewModel {
     var photoUrlOfCell: Observable<PhotoCellModel> {
         return photoCell.asObservable()
     }
-    
-    
+        
     private let loadInProgress = BehaviorRelay(value: false)
     private let cells = BehaviorRelay<[PlacesTableViewCellType]>(value: [])
     private let photoCell = BehaviorRelay<PhotoCellModel>(value: PhotoCellModel(url: ""))
@@ -43,6 +41,8 @@ class NearByViewModel {
     private var limit:Int = 10
     private var maxPageValue: Int = 50
     private var lastImageCellIndex: Int = 0
+    private var isFirstLoading:Bool = true
+    private var venuesIDs: [String] = []
     
     init(apiClient: ApiClient) {
         self.appServerClient = apiClient
@@ -78,7 +78,7 @@ class NearByViewModel {
             return
         }
         
-        loadInProgress.accept(true)
+        loadInProgress.accept(isFirstLoading ? true : false)
         
         appServerClient
             .getNearbyPlaces(lat: location?.lat ?? 0.0,
@@ -88,8 +88,8 @@ class NearByViewModel {
                              offset: offset,
                              limit: limit
             )
+            
             .subscribe (
-                
             onNext: { [weak self] model in
                 
                 self?.loadInProgress.accept(false)
@@ -99,23 +99,22 @@ class NearByViewModel {
                 }
                 
                 if (offset == 0){
-                    self?.cells.accept( model.response?.groups?[0].items?.compactMap {
-                        .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
-                    } ?? [] )
+                    self?.cells.accept( model.compactMap())
                 }else {
                     let oldData = self?.cells.value ?? []
-                    self?.cells.accept(oldData + (model.response?.groups?[0].items?.compactMap {
-                        .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
-                    } ?? [] ))
+                    self?.cells.accept(oldData + model.compactMap())
                 }
                 
                 self?.offset +=  (self?.cells.value.count ?? 0)
                 
                 let items = model.response?.groups?[0].items ?? []
-                for item in items {
-                    self?.getImage(of: item.venue?.id ?? "", currentDate: DateManager.getCurrentDate(), index: self?.lastImageCellIndex ?? 0)
-                    self?.lastImageCellIndex += 1
+                
+                self?.venuesIDs.removeAll()
+                items.forEach { [weak self] in
+                    self?.venuesIDs.append($0.venue?.id ?? "")
                 }
+                
+                self?.getImage()
             },
             onError: { [weak self] error in
                 self?.loadInProgress.accept(false)
@@ -128,6 +127,7 @@ class NearByViewModel {
     
     // MARK: - get more places
     func fetchMoreData(){
+        isFirstLoading = false
         getNearbyPlaces(offset: offset,
                         limit: limit,
                         location: (locationService.lastLocation.coordinate.latitude,
@@ -135,29 +135,34 @@ class NearByViewModel {
     }
     
     // MARK: - get image of each place
-    func getImage(of id:String, currentDate:String, index:Int){
+    func getImage(){
         
-        appServerClient
-            .getPlaceImage(placeId: id, currentDate: currentDate)
-            .subscribe(
-                onNext: { [weak self] model in
-                    guard model.response?.photos?.items?.count ?? 0 > 0 else {
-                        self?.photoCell.accept(PhotoCellModel(url: ""))
-                        return
+        venuesIDs.forEach { [weak self] in
+            appServerClient
+                .getPlaceImage(placeId: $0, currentDate: DateManager.getCurrentDate())
+                .subscribe(
+                    onNext: { [weak self] model in
+                        guard model.response?.photos?.items?.count ?? 0 > 0 else {
+                            self?.photoCell.accept(PhotoCellModel(url: ""))
+                            return
+                        }
+                        
+                        let item = model.response?.photos?.items?[0]
+                        let prefix = item?.itemPrefix ?? ""
+                        let size = "\(item?.width ?? 0)x\(item?.height ?? 0)"
+                        let suffix = item?.suffix ?? ""
+                        let imageUrl = prefix + size + suffix
+                        
+//                        UserDefaults.standard.setValue(imageUrl, forKey: id)
+                        self?.photoCell.accept(PhotoCellModel(url:  imageUrl,index: self?.lastImageCellIndex))
+                        self?.lastImageCellIndex += 1
+                    }, onError: { [weak self] error in
+                        self?.photoCell.accept(PhotoCellModel(url: nil,index: self?.lastImageCellIndex))
+                        self?.lastImageCellIndex += 1
                     }
-                    
-                    let item = model.response?.photos?.items?[0]
-                    let prefix = item?.itemPrefix ?? ""
-                    let size = "\(item?.width ?? 0)x\(item?.height ?? 0)"
-                    let suffix = item?.suffix ?? ""
-                    let imageUrl = prefix + size + suffix
-                    
-                    self?.photoCell.accept(PhotoCellModel(url:  imageUrl,index: index))
-                }, onError: { [weak self] error in
-                    self?.photoCell.accept(PhotoCellModel(url: "",index: index))
-                }
-            )
-            .disposed(by: disposeBag)
+                )
+                .disposed(by: disposeBag)
+        }
     }
 }
 
