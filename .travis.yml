@@ -4,5 +4,5 @@ language: swift
 xcode_project: NearBy.xcodeproj
 xcode_sdk: iphonesimulator
 script:
-- xcodebuild clean build test -workspace NearBy/NearBy.xcodeproj -scheme "NearBy" -sdk iphonesimulator -destination "paltform=iOS Simulator,OS=9.3,name=iphone8" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+- xcodebuild clean build test -workspace NearBy/NearBy.xcworkspace -scheme "NearBy" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone8" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
 

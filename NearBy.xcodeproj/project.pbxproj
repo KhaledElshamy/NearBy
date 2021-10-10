@@ -22,6 +22,13 @@
 		057700CF270F9A3A004CC350 /* VenueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700CE270F9A3A004CC350 /* VenueExtension.swift */; };
 		057700D7271046B6004CC350 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700D6271046B6004CC350 /* CustomImageView.swift */; };
 		057700E82710D9D6004CC350 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700E72710D9D5004CC350 /* DateManager.swift */; };
+		057700F7271202BE004CC350 /* PlcaesEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700F6271202BD004CC350 /* PlcaesEndPoint.swift */; };
+		057700FC271202D4004CC350 /* PhotoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057700FB271202D4004CC350 /* PhotoEndPoint.swift */; };
+		057701012712038A004CC350 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701002712038A004CC350 /* EndPointType.swift */; };
+		0577010627120467004CC350 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577010527120467004CC350 /* HTTPMethod.swift */; };
+		0577010B27120507004CC350 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577010A27120507004CC350 /* URLs.swift */; };
+		0577011127121FD3004CC350 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577011027121FD3004CC350 /* NetworkRouter.swift */; };
+		0577011627122026004CC350 /* NetworkRouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577011527122026004CC350 /* NetworkRouterType.swift */; };
 		0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEB5270CC0CD004CC350 /* VenuesModel.swift */; };
 		0577FEBC270CC456004CC350 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FEBB270CC456004CC350 /* LocationService.swift */; };
 		0577FF48270CD0C4004CC350 /* NearbyPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */; };
@@ -78,6 +85,13 @@
 		057700CE270F9A3A004CC350 /* VenueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueExtension.swift; sourceTree = "<group>"; };
 		057700D6271046B6004CC350 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		057700E72710D9D5004CC350 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		057700F6271202BD004CC350 /* PlcaesEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlcaesEndPoint.swift; sourceTree = "<group>"; };
+		057700FB271202D4004CC350 /* PhotoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEndPoint.swift; sourceTree = "<group>"; };
+		057701002712038A004CC350 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		0577010527120467004CC350 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		0577010A27120507004CC350 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		0577011027121FD3004CC350 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		0577011527122026004CC350 /* NetworkRouterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouterType.swift; sourceTree = "<group>"; };
 		0577FEB5270CC0CD004CC350 /* VenuesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesModel.swift; sourceTree = "<group>"; };
 		0577FEBB270CC456004CC350 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		0577FF47270CD0C4004CC350 /* NearbyPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesViewModel.swift; sourceTree = "<group>"; };
@@ -216,6 +230,7 @@
 		0526B1A0270C9D4F00D9CDDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				057700F527120280004CC350 /* Network Manager */,
 				0577FEB5270CC0CD004CC350 /* VenuesModel.swift */,
 				05770037270DDDC2004CC350 /* PhotoServiceModel.swift */,
 				0577FF7E270CED35004CC350 /* PlacesCellModel.swift */,
@@ -281,11 +296,41 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		057700F527120280004CC350 /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+				057700F6271202BD004CC350 /* PlcaesEndPoint.swift */,
+				057700FB271202D4004CC350 /* PhotoEndPoint.swift */,
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		0577010F27121FAB004CC350 /* NetworkRouter */ = {
+			isa = PBXGroup;
+			children = (
+				0577011027121FD3004CC350 /* NetworkRouter.swift */,
+				0577011527122026004CC350 /* NetworkRouterType.swift */,
+			);
+			path = NetworkRouter;
+			sourceTree = "<group>";
+		};
+		0577011A27123AF2004CC350 /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				0577FF74270CD5A5004CC350 /* ApiClient.swift */,
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
 		0577FEBA270CC434004CC350 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0577011A27123AF2004CC350 /* ApiClient */,
+				0577010F27121FAB004CC350 /* NetworkRouter */,
 				0577FEBB270CC456004CC350 /* LocationService.swift */,
-				0577FF74270CD5A5004CC350 /* ApiClient.swift */,
+				057701002712038A004CC350 /* EndPointType.swift */,
+				0577010527120467004CC350 /* HTTPMethod.swift */,
+				0577010A27120507004CC350 /* URLs.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -578,11 +623,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057700F7271202BE004CC350 /* PlcaesEndPoint.swift in Sources */,
 				0577FF7A270CD5DC004CC350 /* ConfigurationManager.swift in Sources */,
 				057700E82710D9D6004CC350 /* DateManager.swift in Sources */,
 				0577FF75270CD5A5004CC350 /* ApiClient.swift in Sources */,
+				057700FC271202D4004CC350 /* PhotoEndPoint.swift in Sources */,
 				0577FF87270D0EF8004CC350 /* NearbyPlacesViewController.swift in Sources */,
 				0526B16D270C9BED00D9CDDA /* ViewController.swift in Sources */,
+				0577011127121FD3004CC350 /* NetworkRouter.swift in Sources */,
 				0577FFB6270D1BD1004CC350 /* UIView.swift in Sources */,
 				0526B169270C9BED00D9CDDA /* AppDelegate.swift in Sources */,
 				0577FEBC270CC456004CC350 /* LocationService.swift in Sources */,
@@ -592,9 +640,13 @@
 				0577003D270DDDE6004CC350 /* PhotoCellModel.swift in Sources */,
 				057700CF270F9A3A004CC350 /* VenueExtension.swift in Sources */,
 				057700D7271046B6004CC350 /* CustomImageView.swift in Sources */,
+				057701012712038A004CC350 /* EndPointType.swift in Sources */,
 				0577FEB6270CC0CD004CC350 /* VenuesModel.swift in Sources */,
+				0577011627122026004CC350 /* NetworkRouterType.swift in Sources */,
 				0577FFC3270D1DD8004CC350 /* EmptyStatusView.swift in Sources */,
+				0577010B27120507004CC350 /* URLs.swift in Sources */,
 				05770038270DDDC2004CC350 /* PhotoServiceModel.swift in Sources */,
+				0577010627120467004CC350 /* HTTPMethod.swift in Sources */,
 				05770058270DE8C8004CC350 /* UIImageView.swift in Sources */,
 				0577FF7F270CED35004CC350 /* PlacesCellModel.swift in Sources */,
 			);

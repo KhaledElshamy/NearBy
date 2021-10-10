@@ -115,7 +115,6 @@ class NearByPlacesViewController: UIViewController {
         tableView.rx
             .willDisplayCell
             .subscribe(onNext: { [unowned self] cell, indexPath in
-                //Do your will display logic
                 if (indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1) {
                     viewModel.fetchMoreData()
                 }
@@ -129,15 +128,25 @@ class NearByPlacesViewController: UIViewController {
             .photoUrlOfCell
             .subscribe(
                 onNext: { [weak self] model in
-                    self?.showImage(at: model.index ?? 0, with: model.url ?? "")
+                    DispatchQueue.main.async {
+                        self?.showImage(at: model.index ?? 0, with: model.url, id: model.id )
+                    }
                 }
             )
             .disposed(by: disposeBag)
     }
     
-    private func showImage(at index:Int , with url:String){
+    private func showImage(at index:Int , with url:String?, id:String?){
         if let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? PlacesTableViewCell {
-            cell.placeImage.loadImage(url: url, placeHolder: #imageLiteral(resourceName: "placeholder"))
+            if let url = url {
+                cell.placeImage.loadImage(url: url,placeHolder: #imageLiteral(resourceName: "placeholder"))
+            }else {
+                if let id = id, let url = UserDefaults.standard.string(forKey: id) {
+                    cell.placeImage.loadImage(url: url,placeHolder: #imageLiteral(resourceName: "placeholder"))
+                }else {
+                    cell.placeImage.image = #imageLiteral(resourceName: "placeholder")
+                }
+            }
         }
     }
     
@@ -146,17 +155,23 @@ class NearByPlacesViewController: UIViewController {
     }
     
     private func showLoading(){
-        progress.show(in: self.view)
+        DispatchQueue.main.async { [unowned self] in
+            progress.show(in: self.view)
+        }
     }
     
     private func stopLoading(){
-        progress.dismiss()
+        DispatchQueue.main.async { [unowned self] in
+            progress.dismiss()
+        }
     }
     
     private func showEmptyState(image:UIImage, message:String){
-        emptyStateView.emptyImage.image = image
-        emptyStateView.labelEmpty.text = message
-        tableView.backgroundView = emptyStateView
-        tableView.separatorStyle = .none
+        DispatchQueue.main.async { [unowned self] in
+            emptyStateView.emptyImage.image = image
+            emptyStateView.labelEmpty.text = message
+            tableView.backgroundView = emptyStateView
+            tableView.separatorStyle = .none
+        }
     }
 }
