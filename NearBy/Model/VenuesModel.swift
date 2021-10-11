@@ -13,7 +13,7 @@ struct VenuesModel: Codable {
     
     func compactMap() -> [PlacesTableViewCellType] {
         return response?.groups?[0].items?.compactMap {
-            .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address))
+            .normal(cellViewModel: PlacesCellModel(name: $0.venue?.name, id: $0.venue?.id, address: $0.venue?.location?.address, imageUrl: nil))
         } ?? [] 
     }
 }

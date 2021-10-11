@@ -24,6 +24,11 @@ class PlacesTableViewCell: UITableViewCell {
         if let viewModel = viewModel {
             name?.text = viewModel.name
             address?.text = viewModel.address
+            if let url = viewModel.imageUrl {
+                placeImage.loadImageUsingUrlString(urlString: url)
+            }else {
+                placeImage.image = #imageLiteral(resourceName: "placeholder")
+            }
         }
     }
     

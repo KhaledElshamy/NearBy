@@ -80,43 +80,6 @@ class NearByViewModelTest: XCTestCase {
             .disposed(by: disposeBag)
     }
     
-    func test_emptyPhotoCell(){
-        apiClientService.getPhotoResult = .success(payload: PhotoServiceModel(meta: nil, response: nil))
-        let sut = makeSut(apiClient: apiClientService)
-        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007",index: 0)
-        
-        sut.photoUrlOfCell
-            .subscribe(
-                onNext: { model in
-                    var firstCellIsEmpty = false
-                    if model.url == "" {
-                        firstCellIsEmpty = true
-                    }
-                    
-                    XCTAssertTrue(firstCellIsEmpty)
-                }
-            ).disposed(by: disposeBag)
-    }
-    
-    func test_nonEmptyPhotoCell(){
-        
-        apiClientService.getPhotoResult = .success(payload: PhotoServiceModel(meta: nil, response: PhotoResponse(photos: PlacePhotos(count: nil, items: [Item(id: nil, createdAt: nil, source: nil, itemPrefix: "https://igx.4sqi.net/img/general/", suffix: "/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg", width: 300, height: 500, checkin: nil, visibility: nil)], dupesRemoved: nil))))
-        
-        let sut = makeSut(apiClient: apiClientService)
-        sut.getImage(of: "42377700f964a52024201fe3", currentDate: "20211007",index: 0)
-        
-        sut.photoUrlOfCell
-            .subscribe(
-                onNext: { model in
-                    var firstCellIsNonEmpty = false
-                    if model.url != "" {
-                        firstCellIsNonEmpty = true
-                    }
-                    
-                    XCTAssertTrue(firstCellIsNonEmpty)
-                }
-            ).disposed(by: disposeBag)
-    }
     
     // MARK:- helpers
     private let disposeBag = DisposeBag()

@@ -38,7 +38,6 @@ class NearByPlacesViewController: UIViewController {
         setupTableView()
         bindLoading()
         bindTableData()
-        setPhotosToTableViewCells()
         
         // fetch current location
         getCurrentLocation()
@@ -122,33 +121,6 @@ class NearByPlacesViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    // MARK: - bind tableViewCell with photo
-    private func setPhotosToTableViewCells(){
-        viewModel
-            .photoUrlOfCell
-            .subscribe(
-                onNext: { [weak self] model in
-                    DispatchQueue.main.async {
-                        self?.showImage(at: model.index ?? 0, with: model.url, id: model.id )
-                    }
-                }
-            )
-            .disposed(by: disposeBag)
-    }
-    
-    private func showImage(at index:Int , with url:String?, id:String?){
-        if let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? PlacesTableViewCell {
-            if let url = url {
-                cell.placeImage.loadImage(url: url,placeHolder: #imageLiteral(resourceName: "placeholder"))
-            }else {
-                if let id = id, let url = UserDefaults.standard.string(forKey: id) {
-                    cell.placeImage.loadImage(url: url,placeHolder: #imageLiteral(resourceName: "placeholder"))
-                }else {
-                    cell.placeImage.image = #imageLiteral(resourceName: "placeholder")
-                }
-            }
-        }
-    }
     
     private func handleLoading(visible: Bool) {
         visible ? showLoading() : stopLoading()
